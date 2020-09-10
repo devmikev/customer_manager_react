@@ -1,24 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import CustomerDataService from '../services/CustomerServices';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { getCustomers } from '../redux/customer/actions';
 
-const CustomersList = () => {
-  const [customers, setCustomers] = useState([]);
-
+const CustomersList = ({ state: { customers }, getCustomers }) => {
   useEffect(() => {
-    retrieveCustomers();
+    getCustomers();
   }, []);
-
-  const retrieveCustomers = () => {
-    CustomerDataService.getAll()
-      .then((response) => {
-        setCustomers(response.data);
-        console.log(response.data);
-      })
-      .catch((e) => {
-        console.log(e);
-      });
-  };
 
   return (
     <div>
@@ -34,4 +22,8 @@ const CustomersList = () => {
   );
 };
 
-export default CustomersList;
+const mapStateToProps = (state) => ({
+  state: state.customer,
+});
+
+export default connect(mapStateToProps, { getCustomers })(CustomersList);
