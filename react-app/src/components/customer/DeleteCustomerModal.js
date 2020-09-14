@@ -23,7 +23,7 @@ const DeleteCustomerModal = ({ customer, deleteCustomer }) => {
         >
           Confirm
         </a>
-        <a href="#!" class="modal-close waves-effect grey btn">
+        <a href="#!" className="modal-close waves-effect grey btn">
           Cancel
         </a>
       </div>

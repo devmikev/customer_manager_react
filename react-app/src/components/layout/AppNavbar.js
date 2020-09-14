@@ -1,6 +1,14 @@
-import React from "react";
+import React, { useRef } from "react";
+import { connect } from "react-redux";
+import { setSearchText } from "../../actions/customerActions";
 
-const AppNavbar = () => {
+const AppNavbar = ({ customer, setSearchText }) => {
+  const onChange = (e) => {
+    // console.log(e.target.value);
+    setSearchText(e.target.value);
+    // console.log(customer);
+  };
+
   return (
     <div>
       <nav>
@@ -11,7 +19,15 @@ const AppNavbar = () => {
           <div className="right">
             <form>
               <div className="input-field">
-                <input id="search" type="search" style={searchInput} />
+                <input
+                  id="search"
+                  type="search"
+                  style={searchInput}
+                  placeholder="Search Customers"
+                  // ref={text}
+                  // value={searchText}
+                  onChange={onChange}
+                />
                 <label className="label-icon" htmlFor="search">
                   <i className="material-icons">search</i>
                 </label>
@@ -40,4 +56,8 @@ const searchInput = {
   height: "64px",
 };
 
-export default AppNavbar;
+const mapStateToProps = (state) => ({
+  customer: state.customer,
+});
+
+export default connect(mapStateToProps, { setSearchText })(AppNavbar);

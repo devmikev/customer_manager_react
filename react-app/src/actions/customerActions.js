@@ -5,6 +5,9 @@ import {
   ADD_CUSTOMER,
   DELETE_CUSTOMER,
   SET_CURRENT_CUSTOMER,
+  UPDATE_CUSTOMER,
+  SEARCH_CUSTOMERS,
+  SET_SEARCH_TEXT,
 } from "./customerTypes";
 
 export const setLoading = () => {
@@ -45,12 +48,16 @@ export const setCurrent = (customer) => (dispatch) => {
   }
 };
 
-// export const setCurrent = (customer) => ({
-//   type: SET_CURRENT_CUSTOMER,
-//   payload: customer,
-// });
+// export const searchCustomers = () => (dispatch) => {
+//   try {
+//     setLoading();
 
-//Delete Customer
+//     dispatch({ type: SEARCH_CUSTOMERS });
+//   } catch (err) {
+//     console.log("Error");
+//   }
+// };
+
 export const deleteCustomer = (id) => async (dispatch) => {
   try {
     await http.delete(`/customers/${id}`);
@@ -60,33 +67,31 @@ export const deleteCustomer = (id) => async (dispatch) => {
   }
 };
 
-// export const getCustomer = (dispatch) => {
-//   return async (id) => {
-//     const res = await http.get(`/customers/${id}`);
-//     dispatch({ type: GET_CUSTOMER, payload: res.data });
-//   };
+export function updateCustomer(id, customer) {
+  return (dispatch) => {
+    console.log(customer);
+    return http.put(`/customers/${id}`, customer).then((response) => {
+      dispatch({ type: UPDATE_CUSTOMER, payload: customer });
+    });
+  };
+}
+
+// export const setSearchText = (text) => (dispatch) => {
+//   try {
+//     setLoading();
+
+//     dispatch({ type: SET_SEARCH_TEXT, payload: text });
+//   } catch (err) {
+//     console.log("Error");
+//   }
 // };
 
-// const getAll = () => {
-//   return http.get('/customers');
-// };
+export const setSearchText = (text) => (dispatch) => {
+  try {
+    setLoading();
 
-// const get = (id) => {
-//   return http.get(`/customers/${id}`);
-// };
-
-// const create = (data) => {
-//   return http.post('/customers', data);
-// };
-
-// const update = (id, data) => {
-//   return http.put(`/customers/${id}`, data);
-// };
-
-// const remove = (id) => {
-//   return http.delete(`/customers/${id}`);
-// };
-
-// const removeAll = () => {
-//   return http.delete(`/customers`);
-// };
+    dispatch({ type: SET_SEARCH_TEXT, payload: text });
+  } catch (err) {
+    console.log("Error");
+  }
+};

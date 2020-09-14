@@ -8,6 +8,8 @@ import CustomerList from "./components/customer/CustomerList";
 import AppNavbar from "./components/layout/AppNavbar";
 import AddCustomerModal from "./components/customer/AddCustomerModal";
 import DeleteCustomerModal from "./components/customer/DeleteCustomerModal";
+import UpdateCustomerModal from "./components/customer/UpdateCustomerModal";
+import ViewCustomerModal from "./components/customer/ViewCustomerModal";
 
 function App() {
   useEffect(() => {
@@ -22,6 +24,8 @@ function App() {
           <CustomerList />
           <AddCustomerModal />
           <DeleteCustomerModal />
+          <UpdateCustomerModal />
+          <ViewCustomerModal />
         </div>
       </Fragment>
     </Provider>

@@ -26,16 +26,16 @@ const CustomerItem = ({ customer, setCurrent }) => {
           <i className="material-icons grey-text">delete</i>
         </a>
         <a
-          href="#edit-customer-modal"
+          href="#update-customer-modal"
           className="modal-trigger secondary-content"
-          // onClick={() => setCurrent(customer)}
+          onClick={() => updateCurrent(customer)}
         >
           <i className="material-icons grey-text">edit</i>
         </a>
         <a
           href="#view-customer-modal"
           className="modal-trigger secondary-content"
-          // onClick={() => setCurrent(customer)}
+          onClick={() => updateCurrent(customer)}
         >
           <i className="material-icons grey-text">person</i>
         </a>
