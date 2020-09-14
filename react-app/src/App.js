@@ -7,6 +7,7 @@ import M from "materialize-css/dist/js/materialize.min.js";
 import CustomerList from "./components/customer/CustomerList";
 import AppNavbar from "./components/layout/AppNavbar";
 import AddCustomerModal from "./components/customer/AddCustomerModal";
+import DeleteCustomerModal from "./components/customer/DeleteCustomerModal";
 
 function App() {
   useEffect(() => {
@@ -20,6 +21,7 @@ function App() {
         <div className="container">
           <CustomerList />
           <AddCustomerModal />
+          <DeleteCustomerModal />
         </div>
       </Fragment>
     </Provider>

@@ -2,8 +2,9 @@ import {
   SET_LOADING,
   GET_CUSTOMERS,
   ADD_CUSTOMER,
-  GET_CUSTOMER,
-  // SET_CURRENT_CUSTOMER,
+  DELETE_CUSTOMER,
+  // GET_CUSTOMER,
+  SET_CURRENT_CUSTOMER,
 } from "../actions/customerTypes";
 
 const initialState = {
@@ -30,17 +31,27 @@ export default (state = initialState, action) => {
         customers: [...state.customers, action.payload],
         loading: false,
       };
-    case GET_CUSTOMER:
+    case DELETE_CUSTOMER:
       return {
         ...state,
-        customer: action.payload,
+        customers: state.customers.filter(
+          (customer) => customer.id !== action.payload
+        ),
+        loading: false,
       };
-    // case SET_CURRENT_CUSTOMER:
-    //   return {
-    //     ...state,
-    //     currentCustomer: action.payload,
-    //   };
+
+    case SET_CURRENT_CUSTOMER:
+      return {
+        ...state,
+        current: action.payload,
+      };
     default:
       return state;
   }
 };
+
+// case GET_CUSTOMER:
+//   return {
+//     ...state,
+//     customer: action.payload,
+//   };

@@ -16,6 +16,7 @@ const CustomerList = ({ customer: { customers, loading }, getCustomers }) => {
   return (
     <ul className="collection with-header">
       <li className="collection-header">
+        <h4 className="center">Customers</h4>
         <div className="row"></div>
       </li>
 

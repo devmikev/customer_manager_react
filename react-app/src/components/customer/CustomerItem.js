@@ -1,10 +1,15 @@
 import React from "react";
 import { connect } from "react-redux";
-// import { setCurrent } from "../../actions/customerActions";
+import { setCurrent } from "../../actions/customerActions";
 
 import M from "materialize-css/dist/js/materialize.min.js";
 
-const CustomerItem = ({ customer }) => {
+const CustomerItem = ({ customer, setCurrent }) => {
+  const updateCurrent = () => {
+    console.log(customer);
+    setCurrent(customer);
+  };
+
   return (
     <li className="collection-item">
       <div>
@@ -13,7 +18,11 @@ const CustomerItem = ({ customer }) => {
           <span className="black-text">{customer.firstName}</span>{" "}
           <span className="black-text">{customer.lastName}</span>{" "}
         </span>
-        <a href="#!" className="secondary-content">
+        <a
+          href="#delete-customer-modal"
+          className="secondary-content modal-trigger"
+          onClick={() => updateCurrent(customer)}
+        >
           <i className="material-icons grey-text">delete</i>
         </a>
         <a
@@ -35,4 +44,4 @@ const CustomerItem = ({ customer }) => {
   );
 };
 
-export default connect(null, {})(CustomerItem);
+export default connect(null, { setCurrent })(CustomerItem);

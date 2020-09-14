@@ -3,8 +3,8 @@ import {
   SET_LOADING,
   GET_CUSTOMERS,
   ADD_CUSTOMER,
-  GET_CUSTOMER,
-  // SET_CURRENT_CUSTOMER,
+  DELETE_CUSTOMER,
+  SET_CURRENT_CUSTOMER,
 } from "./customerTypes";
 
 export const setLoading = () => {
@@ -24,46 +24,47 @@ export const getCustomers = () => async (dispatch) => {
   }
 };
 
-export const addCustomer = () => async (dispatch) => {
+export const addCustomer = (customer) => async (dispatch) => {
   try {
     setLoading();
 
-    const res = await http.create("/customers");
-    dispatch({ type: ADD_CUSTOMER, payload: res.data });
+    http.post("/customers", customer);
+    dispatch({ type: ADD_CUSTOMER, payload: customer });
   } catch (err) {
     console.log("Error");
   }
 };
 
-// export const getCustomer = (id) => async (dispatch) => {
-//   try {
-//     // console.log(id);
-//     const res = await http.get(`/customers/${id}`);
-//     dispatch({ type: GET_CUSTOMER, payload: res.data });
-//   } catch (err) {
-//     console.log(err.response.msg);
-//   }
-// };
-// export const setCustomerId = (id) => ({
+export const setCurrent = (customer) => (dispatch) => {
+  try {
+    setLoading();
+
+    dispatch({ type: SET_CURRENT_CUSTOMER, payload: customer });
+  } catch (err) {
+    console.log("Error");
+  }
+};
+
+// export const setCurrent = (customer) => ({
 //   type: SET_CURRENT_CUSTOMER,
-//   payload: id,
+//   payload: customer,
 // });
+
+//Delete Customer
+export const deleteCustomer = (id) => async (dispatch) => {
+  try {
+    await http.delete(`/customers/${id}`);
+    dispatch({ type: DELETE_CUSTOMER, payload: id });
+  } catch (err) {
+    console.log("Error");
+  }
+};
 
 // export const getCustomer = (dispatch) => {
 //   return async (id) => {
 //     const res = await http.get(`/customers/${id}`);
 //     dispatch({ type: GET_CUSTOMER, payload: res.data });
 //   };
-// };
-
-// //Delete Customer
-// export const deleteCustomer = (id) => async (dispatch) => {
-//   try {
-//     await instance.delete(`/api/customers/${id}`);
-//     dispatch({ type: DELETE_CUSTOMER, payload: id });
-//   } catch (err) {
-//     dispatch({ type: CUSTOMER_ERROR, payload: err.response.msg });
-//   }
 // };
 
 // const getAll = () => {
