@@ -3,13 +3,6 @@ const Customer = db.customers;
 const Op = db.Sequelize.Op;
 
 exports.create = (req, res) => {
-  console.log(req.body);
-  // if (!req.body.firstName) {
-  //   res.status(400).send({
-  //     message: 'Cannot be empty',
-  //   });
-  //   return;
-  // }
   const customer = {
     firstName: req.body.firstName,
     lastName: req.body.lastName,

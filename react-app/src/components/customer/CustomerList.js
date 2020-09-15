@@ -11,44 +11,10 @@ const CustomerList = ({
 }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [customersPerPage, setCustomersPerPage] = useState(5);
-  const [filtered, setFiltered] = useState(customers);
-  console.log("Initial Filtered", customers);
 
   useEffect(() => {
     getCustomers();
   }, []);
-
-  useEffect(() => {
-    // console.log("SearchText updated: ", searchText);
-
-    if (searchText.trim().length === 0 || searchText === null) {
-      // console.log("Please enter a query");
-      setFiltered(customers);
-    } else {
-      const filteredCustomers = customers.filter(
-        (customer) =>
-          customer.firstName.toLowerCase().includes(searchText.toLowerCase()) ||
-          customer.lastName.toLowerCase().includes(searchText.toLowerCase())
-      );
-      console.log(filteredCustomers);
-    }
-    //   customers.filter((customer) => {
-    //     customer.firstName.toLowerCase().includes(searchText.toLowerCase()) ||
-    //       customer.lastName.toLowerCase().includes(searchText.toLowerCase());
-    //   });
-
-    //   console.log("Filtered", filtered);
-    // }
-  }, [searchText]);
-
-  // console.log("searchText", searchText);
-
-  // let filtered = customers;
-
-  // if (loading || customers === null) {
-  //   Pagination;
-  //   Pagination;
-  // }
 
   function filter(c) {
     if (!searchText) {

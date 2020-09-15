@@ -5,7 +5,6 @@ import M from "materialize-css/dist/js/materialize.min.js";
 
 const DeleteCustomerModal = ({ customer, deleteCustomer }) => {
   const onDelete = () => {
-    console.log("onDelete pressed", customer.current.id);
     deleteCustomer(customer.current.id);
     M.toast({ html: "Customer Deleted" });
   };

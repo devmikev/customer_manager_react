@@ -27,11 +27,9 @@ const AddCustomerModal = ({ addCustomer }) => {
       email,
     };
 
-    console.log(newCustomer);
-
     addCustomer(newCustomer);
 
-    // M.toast({ html: `Customer added` });
+    M.toast({ html: `Customer added` });
 
     // Clear Fields
     setFirstName("");

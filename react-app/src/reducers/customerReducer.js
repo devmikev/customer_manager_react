@@ -4,9 +4,7 @@ import {
   ADD_CUSTOMER,
   DELETE_CUSTOMER,
   UPDATE_CUSTOMER,
-  GET_CUSTOMER,
   SET_CURRENT_CUSTOMER,
-  SEARCH_CUSTOMERS,
   SET_SEARCH_TEXT,
 } from "../actions/customerTypes";
 
@@ -35,17 +33,6 @@ export default (state = initialState, action) => {
         ...state,
         customers: action.payload,
       };
-    // case SEARCH_CUSTOMERS:
-    //   return {
-    //     ...state,
-    //     filtered:
-    //       state.searchText === ""
-    //         ? state.customers
-    //         : state.customers.filter((customer) => {
-    //             customer.firstName.includes(state.searchText) ||
-    //               customer.lastName.includes(state.searchText);
-    //           }),
-    //   };
     case ADD_CUSTOMER:
       return {
         ...state,
@@ -60,13 +47,11 @@ export default (state = initialState, action) => {
         ),
         loading: false,
       };
-
     case SET_CURRENT_CUSTOMER:
       return {
         ...state,
         current: action.payload,
       };
-
     case UPDATE_CUSTOMER:
       return {
         ...state,
@@ -74,7 +59,6 @@ export default (state = initialState, action) => {
           customer.id === action.payload.id ? action.payload : customer
         ),
       };
-
     default:
       return state;
   }

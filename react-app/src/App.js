@@ -29,17 +29,6 @@ function App() {
         </div>
       </Fragment>
     </Provider>
-    //       <Switch>
-    //         <Route exact path={["/", "/customers"]} component={CustomerList} />
-    //         <Route exact path={["/add", "/customers"]} component={Create} />
-    //         <Route
-    //           exact
-    //           path={["/customers/:id", "/customers"]}
-    //           component={View}
-    //         />
-    //         {/* <Route exact path="/:id" component={View} /> */}
-    //         {/* <Route exact path="/edit/:id" component={Edit} /> */}
-    //       </Switch>
   );
 }
 

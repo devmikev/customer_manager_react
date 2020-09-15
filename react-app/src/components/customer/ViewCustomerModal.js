@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
-import M from "materialize-css/dist/js/materialize.min.js";
 
 const ViewCustomerModal = ({ current }) => {
-  console.log("Customer from global store", current);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [line1, setLine1] = useState("");
@@ -27,34 +25,6 @@ const ViewCustomerModal = ({ current }) => {
       setEmail(current.email);
     }
   }, [current]);
-
-  const onSubmit = () => {
-    const updatedCustomer = {
-      id: current.id,
-      firstName,
-      lastName,
-      line1,
-      line2,
-      city,
-      state,
-      zip,
-      phone,
-      email,
-    };
-
-    // console.log("updatedCustomer", updatedCustomer);
-
-    // Clear Fields
-    setFirstName("");
-    setLastName("");
-    setLine1("");
-    setLine2("");
-    setCity("");
-    setState("");
-    setZip("");
-    setPhone("");
-    setEmail("");
-  };
 
   return (
     <div id="view-customer-modal" className="modal" style={modalStyle}>

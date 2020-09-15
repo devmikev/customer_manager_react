@@ -1,12 +1,10 @@
-import React, { useRef } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import { setSearchText } from "../../actions/customerActions";
 
 const AppNavbar = ({ customer, setSearchText }) => {
   const onChange = (e) => {
-    // console.log(e.target.value);
     setSearchText(e.target.value);
-    // console.log(customer);
   };
 
   return (
@@ -24,8 +22,7 @@ const AppNavbar = ({ customer, setSearchText }) => {
                   type="search"
                   style={searchInput}
                   placeholder="Search Customers"
-                  // ref={text}
-                  // value={searchText}
+                  value={customer.searchText}
                   onChange={onChange}
                 />
                 <label className="label-icon" htmlFor="search">
@@ -37,11 +34,7 @@ const AppNavbar = ({ customer, setSearchText }) => {
           </div>
           <ul className="left">
             <li>
-              <a
-                href="#add-customer-modal"
-                className="modal-trigger"
-                // onClick={() => setCurrent(customer)}
-              >
+              <a href="#add-customer-modal" className="modal-trigger">
                 <i className="material-icons grey-text">group-add</i>
               </a>
             </li>

@@ -6,7 +6,6 @@ import {
   DELETE_CUSTOMER,
   SET_CURRENT_CUSTOMER,
   UPDATE_CUSTOMER,
-  SEARCH_CUSTOMERS,
   SET_SEARCH_TEXT,
 } from "./customerTypes";
 
@@ -48,16 +47,6 @@ export const setCurrent = (customer) => (dispatch) => {
   }
 };
 
-// export const searchCustomers = () => (dispatch) => {
-//   try {
-//     setLoading();
-
-//     dispatch({ type: SEARCH_CUSTOMERS });
-//   } catch (err) {
-//     console.log("Error");
-//   }
-// };
-
 export const deleteCustomer = (id) => async (dispatch) => {
   try {
     await http.delete(`/customers/${id}`);
@@ -69,22 +58,11 @@ export const deleteCustomer = (id) => async (dispatch) => {
 
 export function updateCustomer(id, customer) {
   return (dispatch) => {
-    console.log(customer);
     return http.put(`/customers/${id}`, customer).then((response) => {
       dispatch({ type: UPDATE_CUSTOMER, payload: customer });
     });
   };
 }
-
-// export const setSearchText = (text) => (dispatch) => {
-//   try {
-//     setLoading();
-
-//     dispatch({ type: SET_SEARCH_TEXT, payload: text });
-//   } catch (err) {
-//     console.log("Error");
-//   }
-// };
 
 export const setSearchText = (text) => (dispatch) => {
   try {

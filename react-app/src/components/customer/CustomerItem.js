@@ -6,7 +6,6 @@ import M from "materialize-css/dist/js/materialize.min.js";
 
 const CustomerItem = ({ customer, setCurrent }) => {
   const updateCurrent = () => {
-    console.log(customer);
     setCurrent(customer);
   };
 

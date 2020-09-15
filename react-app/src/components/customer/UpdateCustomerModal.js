@@ -4,7 +4,6 @@ import { updateCustomer } from "../../actions/customerActions";
 import M from "materialize-css/dist/js/materialize.min.js";
 
 const UpdateCustomerModal = ({ current, updateCustomer }) => {
-  // console.log("Customer from global store", current);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [line1, setLine1] = useState("");
@@ -43,9 +42,8 @@ const UpdateCustomerModal = ({ current, updateCustomer }) => {
       email,
     };
 
-    // console.log("updatedCustomer", updatedCustomer);
-    console.log(updatedCustomer);
     updateCustomer(updatedCustomer.id, updatedCustomer);
+    M.toast({ html: `Customer updated.` });
 
     // Clear Fields
     setFirstName("");
