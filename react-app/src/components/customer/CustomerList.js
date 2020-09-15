@@ -3,11 +3,14 @@ import { connect } from "react-redux";
 import Preloader from "../layout/Preloader";
 import { getCustomers } from "../../actions/customerActions";
 import CustomerItem from "./CustomerItem";
+import Pagination from "../Pagination";
 
 const CustomerList = ({
   customer: { customers, loading, searchText },
   getCustomers,
 }) => {
+  const [currentPage, setCurrentPage] = useState(1);
+  const [customersPerPage, setCustomersPerPage] = useState(5);
   const [filtered, setFiltered] = useState(customers);
   console.log("Initial Filtered", customers);
 
@@ -42,9 +45,10 @@ const CustomerList = ({
 
   // let filtered = customers;
 
-  if (loading || customers === null) {
-    return <Preloader />;
-  }
+  // if (loading || customers === null) {
+  //   Pagination;
+  //   Pagination;
+  // }
 
   function filter(c) {
     if (!searchText) {
@@ -56,23 +60,42 @@ const CustomerList = ({
     );
   }
 
-  return (
-    <ul className="collection with-header">
-      <li className="collection-header">
-        <h4 className="center">Customers</h4>
-        <div className="row"></div>
-      </li>
+  const indexOfLastCustomer = currentPage * customersPerPage;
+  const indexOfFirstCustomer = indexOfLastCustomer - customersPerPage;
+  const currentCustomer = customers.slice(
+    indexOfFirstCustomer,
+    indexOfLastCustomer
+  );
 
-      {!loading && customers.length === 0 ? (
-        <p className="center">No customers to show...</p>
-      ) : (
-        customers
-          .filter(filter)
-          .map((customer) => (
-            <CustomerItem key={customer.id} customer={customer}></CustomerItem>
-          ))
-      )}
-    </ul>
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+  return (
+    <div className="container">
+      <ul className="collection with-header">
+        <li className="collection-header">
+          <h4 className="center">Customers</h4>
+          <div className="row"></div>
+        </li>
+
+        {!loading && customers.length === 0 ? (
+          <p className="center">No customers to show...</p>
+        ) : (
+          currentCustomer
+            .filter(filter)
+            .map((customer) => (
+              <CustomerItem
+                key={customer.id}
+                customer={customer}
+              ></CustomerItem>
+            ))
+        )}
+      </ul>
+      <Pagination
+        customersPerPage={customersPerPage}
+        totalCustomers={customers.length}
+        paginate={paginate}
+      />
+    </div>
   );
 };
 
